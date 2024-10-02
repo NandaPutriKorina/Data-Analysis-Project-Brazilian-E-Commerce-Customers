@@ -74,3 +74,4 @@ st.write("""
 - The postal code with the highest number of customers is **postal code 87**. This suggests that the area has significant sales potential and should be considered in marketing strategies.
 - With this understanding, the company can focus its marketing and sales efforts in areas with a high concentration of customers, as well as consider product development strategies that align with customer preferences in those regions.
 """)
+
