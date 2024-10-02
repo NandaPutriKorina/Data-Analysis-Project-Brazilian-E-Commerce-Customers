@@ -3,8 +3,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Load dataset
-df = pd.read_csv(r'C:\Users\ASUS\Downloads\streamlit_dashboard\main_data.csv')
+# Use a relative path
+df = pd.read_csv('main_data.csv')
 
 # Title of the dashboard
 st.title('E-Commerce Customer Analysis')
