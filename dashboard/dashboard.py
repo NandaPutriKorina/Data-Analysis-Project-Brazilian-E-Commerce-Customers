@@ -3,8 +3,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-df = pd.read_csv('dashboard/main_data.csv')
-
+# Load dataset
+df = pd.read_csv('dashboard\main_data.csv')
 
 # Title of the dashboard
 st.title('E-Commerce Customer Analysis')
@@ -45,13 +45,13 @@ ax2.set_title('Top 10 Cities by Customer Count (Pie Chart)')
 ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 st.pyplot(fig2)
 
-# Question 2: Distribution of customers by postal code
+# Question 2: Distribution of customers by postal code (Corrected)
 st.subheader('Distribution of Customers by Postal Code')
 postal_distribution = df['customer_zip_code_prefix'].value_counts().reset_index()
 postal_distribution.columns = ['customer_zip_code_prefix', 'customer_count']
 top_postal_codes = postal_distribution.head(10)
 
-# Plot 3: Bar plot for top 10 postal codes by customer count
+# Plot 3: Bar plot for top 10 postal codes by customer count (Corrected x and y axes)
 fig3, ax3 = plt.subplots()
 colors_postal = ['lightblue' if postal == top_postal_codes.iloc[0, 0] else 'lightgray' for postal in top_postal_codes['customer_zip_code_prefix']]
 sns.barplot(x='customer_count', y='customer_zip_code_prefix', data=top_postal_codes, palette=colors_postal, ax=ax3)
@@ -71,7 +71,6 @@ st.pyplot(fig4)
 st.header("Conclusion")
 st.write("""
 - Based on the analysis of customer distribution, the city with the highest number of customers is **Sao Paulo**. This indicates that this city is an important target market for the company.
-- The postal code with the highest number of customers is **postal code 87**. This suggests that the area has significant sales potential and should be considered in marketing strategies.
+- The postal code with the highest number of customers is **postal code 22790**. This suggests that the area has significant sales potential and should be considered in marketing strategies.
 - With this understanding, the company can focus its marketing and sales efforts in areas with a high concentration of customers, as well as consider product development strategies that align with customer preferences in those regions.
 """)
-
