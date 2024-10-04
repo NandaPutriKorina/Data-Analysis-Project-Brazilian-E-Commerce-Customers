@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load dataset
-df = pd.read_csv(dashboard/main_data.scv')
+df = pd.read_csv(dashboard/main_data.csv')
 
 # Title of the dashboard
 st.title('E-Commerce Customer Analysis')
