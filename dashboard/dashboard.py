@@ -25,9 +25,9 @@ st.write("""
 
 # Question 1: Distribution of customers by city
 st.subheader('Distribution of Customers by City')
-city_distribution = df['customer_city'].value_counts().reset_index()
-city_distribution.columns = ['customer_city', 'customer_count']
-top_cities = city_distribution.head(10)
+customer_count_by_city = df['customer_city'].value_counts().reset_index()
+customer_count_by_city.columns = ['customer_city', 'customer_count']
+top_cities = customer_count_by_city.head(10)
 
 # Plot 1: Bar plot for top 10 cities by customer count
 fig1, ax1 = plt.subplots()
@@ -47,22 +47,24 @@ st.pyplot(fig2)
 
 # Question 2: Distribution of customers by postal code (Corrected)
 st.subheader('Distribution of Customers by Postal Code')
-postal_distribution = df['customer_zip_code_prefix'].value_counts().reset_index()
-postal_distribution.columns = ['customer_zip_code_prefix', 'customer_count']
-top_postal_codes = postal_distribution.head(10)
+zip_code_distribution = df['customer_zip_code_prefix'].value_counts().reset_index()
+zip_code_distribution.columns = ['customer_zip_code_prefix', 'count']
+top_postal_codes = zip_code_distribution.head(10).sort_values(by='count', ascending=False)
+max_count = top_postal_codes['count'].max()
+max_postal_code = top_postal_codes.loc[top_postal_codes['count'] == max_count, 'customer_zip_code_prefix'].values[0]
 
 # Plot 3: Bar plot for top 10 postal codes by customer count (Corrected x and y axes)
 fig3, ax3 = plt.subplots()
-colors_postal = ['lightblue' if postal == top_postal_codes.iloc[0, 0] else 'lightgray' for postal in top_postal_codes['customer_zip_code_prefix']]
-sns.barplot(x='customer_count', y='customer_zip_code_prefix', data=top_postal_codes, palette=colors_postal, ax=ax3)
+colors_postal = ['lightblue' if code == max_postal_code else 'lightgray' for code in top_postal_codes['customer_zip_code_prefix']]
+sns.barplot(x='customer_zip_code_prefix', y='count', data=top_postal_codes, palette=colors_postal, ax=ax3, order=top_postal_codes['customer_zip_code_prefix'])
 ax3.set_title('Top 10 Postal Codes by Customer Count (Bar Plot)')
-ax3.set_xlabel('Number of Customers')
-ax3.set_ylabel('Postal Code')
+ax3.set_xlabel('Postal Code')
+ax3.set_ylabel('Number of Customers')
 st.pyplot(fig3)
 
 # Plot 4: Pie chart for top 10 postal codes by customer count
 fig4, ax4 = plt.subplots()
-ax4.pie(top_postal_codes['customer_count'], labels=top_postal_codes['customer_zip_code_prefix'], autopct='%1.1f%%', colors=['lightblue'] + ['lightgray'] * (len(top_postal_codes) - 1), startangle=90)
+ax4.pie(top_postal_codes['count'], labels=top_postal_codes['customer_zip_code_prefix'], autopct='%1.1f%%', colors=['lightblue'] + ['lightgray'] * (len(top_postal_codes) - 1), startangle=90)
 ax4.set_title('Top 10 Postal Codes by Customer Count (Pie Chart)')
 ax4.axis('equal')
 st.pyplot(fig4)
@@ -74,3 +76,4 @@ st.write("""
 - The postal code with the highest number of customers is **postal code 22790**. This suggests that the area has significant sales potential and should be considered in marketing strategies.
 - With this understanding, the company can focus its marketing and sales efforts in areas with a high concentration of customers, as well as consider product development strategies that align with customer preferences in those regions.
 """)
+
