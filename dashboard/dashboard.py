@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load dataset
-df = pd.read_csv('dashboard\main_data.csv')
+df = pd.read_csv(dashboard\main_data.csv')
 
 # Title of the dashboard
 st.title('E-Commerce Customer Analysis')
@@ -76,4 +76,3 @@ st.write("""
 - The postal code with the highest number of customers is **postal code 22790**. This suggests that the area has significant sales potential and should be considered in marketing strategies.
 - With this understanding, the company can focus its marketing and sales efforts in areas with a high concentration of customers, as well as consider product development strategies that align with customer preferences in those regions.
 """)
-
