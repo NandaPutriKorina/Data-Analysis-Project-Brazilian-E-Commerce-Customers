@@ -20,7 +20,7 @@ By examining this data, I aim to uncover insights into where customers are locat
 st.subheader("Problem Questions")
 st.write("""
 1. What is the distribution of customers based on cities?
-2. How does customer distribution vary according to postal codes?
+2. Is there a significant difference in the number of customers based on postal codes?
 """)
 
 # Question 1: Distribution of customers by city
